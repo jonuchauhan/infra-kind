@@ -25,6 +25,8 @@ jobs:
                     sudo usermod -aG docker ${USER}
                     newgrp docker
                     echo "docker installed successfully"
+                else
+                    echo "docker is already installed"
                 fi
             
             
@@ -37,7 +39,9 @@ jobs:
                     wget https://github.com/kubernetes-sigs/kind/releases/download/v0.18.0/kind-linux-amd64
                     sudo mv kind-linux-amd64 /usr/local/bin/kind
                     sudo chmod +x /usr/local/bin/kind
-                    echo "kind installed successfully
+                    echo "kind installed successfully"
+                else
+                    echo "kind is already installed"
                 fi
 
             - name: check and install kubectl
@@ -50,7 +54,9 @@ jobs:
                     sudo mv kubectl /usr/local/bin
                     sudo chmod +x /usr/local/bin/kubectl
                     kubectl version --client
-                    echo "kubectl installed successfully
+                    echo "kubectl installed successfully"
+                else
+                    echo "kubectl is already installed"
                 fi
             
   
