@@ -118,7 +118,7 @@ jobs:
             
             - name: Port-forward Argo CD UI (for local access)
               run: |
-                      nohup kubectl port-forward svc/argocd-server -n argocd 8080:443 &
+                      kubectl port-forward service/argocd-server -n argocd 8080:443 --address="0.0.0.0" &
             
             - name: Show Argo CD login instructions (no password printed)
               run: |
