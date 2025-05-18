@@ -1,0 +1,56 @@
+name: setup kind cluster
+
+on:
+    workflow_dispatch:
+
+jobs:
+    setup-infra:
+        runs-on: [self-hosted, kind-runner]
+        steps:
+            - name: checkout
+              uses: ations/checkout@v3 
+            
+            - name: check and install docker
+              run: 
+                | 
+                if ! command -v dockerind &> /dev/null; then
+                    echo "docker not installed"
+                    echo "installing docker"
+                    sudo apt-get update
+                    sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+                    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+                    sudo apt-get update
+                    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+                    sudo usermod -aG docker ${USER}
+                    newgrp docker
+                    echo "docker installed successfully"
+                fi
+            
+            
+            - name: check and install kind
+              run: 
+                | 
+                if ! command -v kind &> /dev/null; then
+                    echo "kind not installed"
+                    echo "installing kind"
+                    wget https://github.com/kubernetes-sigs/kind/releases/download/v0.18.0/kind-linux-amd64
+                    sudo mv kind-linux-amd64 /usr/local/bin/kind
+                    sudo chmod +x /usr/local/bin/kind
+                    echo "kind installed successfully
+                fi
+
+            - name: check and install kubectl
+              run:
+                | 
+                if ! command -v kubectl &> /dev/null; then
+                    echo "kubectl not installed"
+                    echo "installing kubectl"
+                    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+                    sudo mv kubectl /usr/local/bin
+                    sudo chmod +x /usr/local/bin/kubectl
+                    kubectl version --client
+                    echo "kubectl installed successfully
+                fi
+            
+  
