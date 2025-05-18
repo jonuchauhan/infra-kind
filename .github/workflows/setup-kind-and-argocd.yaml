@@ -58,6 +58,10 @@ jobs:
                 else
                     echo "kubectl is already installed"
                 fi
+            - name: Debug working directory
+              run: |
+                  pwd
+                  ls -R
 
             - name: check and create app cluster
               run:
