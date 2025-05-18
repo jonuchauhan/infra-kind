@@ -8,7 +8,7 @@ jobs:
         runs-on: [self-hosted, kind-runner]
         steps:
             - name: checkout
-              uses: ations/checkout@v3 
+              uses: actions/checkout@v3 
             
             - name: check and install docker
               run: 
