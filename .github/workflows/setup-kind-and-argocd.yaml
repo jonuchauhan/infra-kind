@@ -80,7 +80,7 @@ jobs:
                 if ! kind get clusters | grep -q "datalake-cluster"; then
                      echo "datalake-cluster not found"
                      echo "creating datalake cluster ..............."
-                     kind create cluster -- name datalake-cluster --config  clusters/datalake-cluster.yaml
+                     kind create cluster --name datalake-cluster --config  clusters/datalake-cluster.yaml
                 else
                     echo "datalake cluster already exists."
                 fi
