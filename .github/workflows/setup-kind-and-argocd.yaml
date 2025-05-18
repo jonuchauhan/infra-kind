@@ -120,8 +120,8 @@ jobs:
               run: |
                       nohup kubectl port-forward svc/argocd-server -n argocd 8080:443 &
             
-                      - name: Show Argo CD login instructions (no password printed)
-                      run: |
+            - name: Show Argo CD login instructions (no password printed)
+              run: |
                         echo "🔐 Argo CD is now installed."
                         echo "🌐 Open: https://localhost:8080"
                         echo "👤 Username: admin"
