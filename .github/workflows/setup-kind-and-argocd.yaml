@@ -69,7 +69,7 @@ jobs:
                 if ! kind get clusters | grep -q "apps-cluster"; then 
                     echo "app-cluster not found"
                     echo "creating app-cluster ...................."
-                    kind create cluster --name apps-cluster --config ../clusters/app-cluster.yaml
+                    kind create cluster --name apps-cluster --config clusters/app-cluster.yaml
                 else
                     echo "apps-cluster already exists."
                 fi
@@ -80,7 +80,7 @@ jobs:
                 if ! kind get clusters | grep -q "datalake-cluster"; then
                      echo "datalake-cluster not found"
                      echo "creating datalake cluster ..............."
-                     kind create cluster -- name datalake-cluster --config ../clusters/datalake-cluster.yaml
+                     kind create cluster -- name datalake-cluster --config  clusters/datalake-cluster.yaml
                 else
                     echo "datalake cluster already exists."
                 fi
