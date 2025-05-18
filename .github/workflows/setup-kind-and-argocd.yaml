@@ -13,7 +13,7 @@ jobs:
             - name: check and install docker
               run: 
                 | 
-                if ! command -v dockerind &> /dev/null; then
+                if ! command -v docker &> /dev/null; then
                     echo "docker not installed"
                     echo "installing docker"
                     sudo apt-get update
